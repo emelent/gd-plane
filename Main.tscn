@@ -1,0 +1,205 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/plane.png" type="Texture" id=1]
+[ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/joystick/Joystick.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/trail/Trail.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ammo-8-32x.png" type="Texture" id=6]
+[ext_resource path="res://3bit-catgirls-nish-cyra-8x.png" type="Texture" id=7]
+[ext_resource path="res://assets/FiraCode-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Main.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 10 )
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.318519, 0.548148, 0.792593, 1 )
+colors = PoolColorArray( 0.188235, 0.364706, 0.258824, 1, 0.537255, 0.635294, 0.341176, 1, 0.705853, 0.882891, 0.351777, 1, 1, 1, 1, 1, 0.631373, 0.639216, 0.619608, 0.764706 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0.905272 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.000182033 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 2, 1 )
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 30.52
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 49.66
+angular_velocity_random = 0.14
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+linear_accel_curve = SubResource( 4 )
+scale = 8.0
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 2 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="HUD"]
+margin_left = 178.121
+margin_top = 20.6854
+margin_right = 218.121
+margin_bottom = 60.6854
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Plane" type="KinematicBody2D" parent="." groups=[
+"players",
+]]
+position = Vector2( 180, 180 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 100.0
+acceleration = 4.0
+rotation_speed = 0.8
+
+[node name="Trails" type="Node2D" parent="Plane"]
+visible = false
+
+[node name="Trail1" parent="Plane/Trails" instance=ExtResource( 5 )]
+show_behind_parent = true
+width = 4.0
+default_color = Color( 0.996078, 0.996078, 0.996078, 1 )
+num_points = 200
+
+[node name="Trail2" parent="Plane/Trails" instance=ExtResource( 5 )]
+visible = false
+show_behind_parent = true
+position = Vector2( 8, 16.3773 )
+width = 4.0
+default_color = Color( 0.996078, 0.996078, 0.996078, 1 )
+num_points = 100
+
+[node name="Sprite" type="Sprite" parent="Plane"]
+modulate = Color( 0.933333, 1, 0.8, 1 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 1 )
+
+[node name="Collider" type="CollisionPolygon2D" parent="Plane"]
+visible = false
+polygon = PoolVector2Array( -14.1342, -9.04572, -13.8005, 7.30551, 9.55843, -0.0358582 )
+
+[node name="Camera" type="Camera2D" parent="Plane"]
+offset = Vector2( 0, 140 )
+current = true
+editor_draw_limits = true
+
+[node name="ExhaustParticles" type="Particles2D" parent="Plane"]
+visible = false
+position = Vector2( -12, 0 )
+explosiveness = 0.27
+local_coords = false
+draw_order = 1
+process_material = SubResource( 7 )
+
+[node name="Joystick" parent="." instance=ExtResource( 4 )]
+modulate = Color( 0.745098, 0.862745, 0.498039, 1 )
+position = Vector2( 180, 560 )
+
+[node name="palettes" type="Node2D" parent="."]
+visible = false
+
+[node name="3bit-catgirls-nish-cyra-8x" type="Sprite" parent="palettes"]
+position = Vector2( 565.955, 297.327 )
+scale = Vector2( 4.26595, 4.26595 )
+texture = ExtResource( 7 )
+
+[node name="ammo-8-32x" type="Sprite" parent="palettes"]
+position = Vector2( 303.222, 812.23 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 360, 640 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/Background"]
+margin_right = 360.0
+margin_bottom = 640.0
+color = Color( 0.0156863, 0.0470588, 0.0235294, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 242.641, 320.122 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 447.469, 152.359 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 26.1081, 255.748 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -128.001, 507.394 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -311.371, 148.457 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -570.819, 109.442 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -699.568, 341.581 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 148.038, -489.186 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 1175.27, -455.506 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 1321.22, 364.034 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 636.394, 824.323 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 52.6122, 1256.55 )
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 670.074, 1368.81 )
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -466.387, 1717.08 )
+[connection signal="joystick_value" from="Joystick/Button" to="Plane" method="_on_Button_joystick_value"]
+
+[editable path="Joystick"]
