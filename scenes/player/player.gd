@@ -4,7 +4,6 @@ extends KinematicBody2D
 export(float) var speed = 50.0
 export(float) var acceleration = 4.0
 export(float) var rotation_speed = 1.0
-
 const max_rotation = 180
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
@@ -13,6 +12,9 @@ var velocity = Vector2.ZERO
 
 func _ready():
 	GameManager.player = self
+	var joystick = get_parent().get_node("HUD/Joystick/Button")
+	if joystick:
+		joystick.connect("joystick_value", self, "_on_joystick_value")
 
 func _process(delta):
 	pass
@@ -30,7 +32,7 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 
 
-func _on_Button_joystick_value(value: Vector2):
+func _on_joystick_value(value: Vector2):
 #	rotation_degrees = value.y * max_rotation
 	velocity = (velocity + acceleration * value).clamped(speed)
 	

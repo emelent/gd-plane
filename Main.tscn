@@ -71,6 +71,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Joystick" parent="HUD" instance=ExtResource( 4 )]
+modulate = Color( 0.745098, 0.862745, 0.498039, 1 )
+position = Vector2( 180, 560 )
+
 [node name="Plane" type="KinematicBody2D" parent="." groups=[
 "players",
 ]]
@@ -90,7 +94,7 @@ visible = false
 show_behind_parent = true
 width = 4.0
 default_color = Color( 0.996078, 0.996078, 0.996078, 1 )
-num_points = 200
+num_points = 800
 
 [node name="Trail2" parent="Plane/Trails" instance=ExtResource( 5 )]
 visible = false
@@ -123,10 +127,6 @@ explosiveness = 0.27
 local_coords = false
 draw_order = 1
 process_material = SubResource( 8 )
-
-[node name="Joystick" parent="." instance=ExtResource( 4 )]
-modulate = Color( 0.745098, 0.862745, 0.498039, 1 )
-position = Vector2( 180, 560 )
 
 [node name="palettes" type="Node2D" parent="."]
 visible = false
@@ -362,6 +362,3 @@ position = Vector2( 670.074, 1368.81 )
 
 [node name="Coin14" parent="Coins" instance=ExtResource( 3 )]
 position = Vector2( -466.387, 1717.08 )
-[connection signal="joystick_value" from="Joystick/Button" to="Plane" method="_on_Button_joystick_value"]
-
-[editable path="Joystick"]

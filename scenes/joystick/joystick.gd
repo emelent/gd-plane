@@ -13,8 +13,6 @@ var ongoing_drag = -1
 	
 signal joystick_value
 
-var travelled = Vector2.ZERO
-
 func _ready():
 	set_process(!Engine.editor_hint)
 	
@@ -31,11 +29,6 @@ func _process(delta):
 		var pos_difference = (Vector2.ZERO - radius) - position
 		position += pos_difference * return_accel * delta
 		
-	if GameManager.player == null: return
-	
-	var player_vel = GameManager.player.velocity * delta
-	travelled += player_vel
-	get_parent().global_position += player_vel
 	emit_signal("joystick_value", get_value())
 
 func set_boundary(value):
@@ -47,7 +40,7 @@ func get_button_pos():
 
 func _input(event):
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
-		var event_pos = event.position + travelled
+		var event_pos = event.position 
 		var event_dist_from_centre = (event_pos - get_parent().global_position).length()
 
 		if event_dist_from_centre <= boundary * global_scale.x or event.get_index() == ongoing_drag:
