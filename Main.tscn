@@ -10,32 +10,32 @@
 [ext_resource path="res://assets/FiraCode-Bold.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Main.gd" type="Script" id=11]
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 10 )
 
-[sub_resource type="Gradient" id=1]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.318519, 0.548148, 0.792593, 1 )
 colors = PoolColorArray( 0.188235, 0.364706, 0.258824, 1, 0.537255, 0.635294, 0.341176, 1, 0.705853, 0.882891, 0.351777, 1, 1, 1, 1, 1, 0.631373, 0.639216, 0.619608, 0.764706 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
 
-[sub_resource type="CurveTexture" id=4]
-curve = SubResource( 3 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0.905272 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.000182033 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 2, 1 )
 flag_disable_z = true
@@ -48,10 +48,10 @@ angular_velocity_random = 0.14
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 1.0
-linear_accel_curve = SubResource( 4 )
+linear_accel_curve = SubResource( 5 )
 scale = 8.0
-scale_curve = SubResource( 6 )
-color_ramp = SubResource( 2 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 3 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 11 )
@@ -63,7 +63,7 @@ margin_left = 178.121
 margin_top = 20.6854
 margin_right = 218.121
 margin_bottom = 60.6854
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "0"
 align = 1
@@ -79,8 +79,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-speed = 100.0
-acceleration = 4.0
+speed = 200.0
+acceleration = 8.0
 rotation_speed = 0.8
 
 [node name="Trails" type="Node2D" parent="Plane"]
@@ -122,7 +122,7 @@ position = Vector2( -12, 0 )
 explosiveness = 0.27
 local_coords = false
 draw_order = 1
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 
 [node name="Joystick" parent="." instance=ExtResource( 4 )]
 modulate = Color( 0.745098, 0.862745, 0.498039, 1 )
@@ -170,6 +170,96 @@ position = Vector2( 26.1081, 255.748 )
 
 [node name="Coin4" parent="Coins" instance=ExtResource( 3 )]
 position = Vector2( -128.001, 507.394 )
+
+[node name="Coin39" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -228.415, 333.146 )
+
+[node name="Coin40" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 114.174, 330.193 )
+
+[node name="Coin41" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 114.174, 170.712 )
+
+[node name="Coin42" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 84.6401, 73.2518 )
+
+[node name="Coin43" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 220.494, 99.8319 )
+
+[node name="Coin44" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 421.322, 20.0915 )
+
+[node name="Coin45" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 433.135, 312.473 )
+
+[node name="Coin46" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 356.348, 498.534 )
+
+[node name="Coin47" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -104.374, 696.408 )
+
+[node name="Coin48" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -281.575, 655.061 )
+
+[node name="Coin49" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -470.59, 702.315 )
+
+[node name="Coin50" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -473.543, 371.54 )
+
+[node name="Coin51" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -585.77, 477.861 )
+
+[node name="Coin52" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -641.884, 660.968 )
+
+[node name="Coin53" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -494.216, 870.656 )
+
+[node name="Coin54" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -441.056, 858.842 )
+
+[node name="Coin55" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -381.989, 613.714 )
+
+[node name="Coin56" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( -195.928, 811.589 )
+
+[node name="Coin57" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 7.85315, 693.455 )
+
+[node name="Coin58" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 61.0134, 404.027 )
+
+[node name="Coin59" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 69.8735, 288.846 )
+
+[node name="Coin60" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 99.407, 460.14 )
+
+[node name="Coin61" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 167.334, 498.534 )
+
+[node name="Coin62" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 247.074, 531.021 )
+
+[node name="Coin63" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 424.275, 433.56 )
+
+[node name="Coin64" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 424.275, 433.56 )
+
+[node name="Coin65" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 639.87, 318.38 )
+
+[node name="Coin66" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 639.87, 318.38 )
+
+[node name="Coin67" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 820.024, 155.945 )
+
+[node name="Coin68" parent="Coins" instance=ExtResource( 3 )]
+position = Vector2( 820.024, 155.945 )
 
 [node name="Coin15" parent="Coins" instance=ExtResource( 3 )]
 position = Vector2( 59.2322, 838.317 )
