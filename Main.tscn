@@ -75,16 +75,17 @@ __meta__ = {
 modulate = Color( 0.745098, 0.862745, 0.498039, 1 )
 position = Vector2( 180, 560 )
 
-[node name="Plane" type="KinematicBody2D" parent="." groups=[
+[node name="Plane" type="RigidBody2D" parent="." groups=[
 "players",
 ]]
 position = Vector2( 180, 180 )
+gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 speed = 150.0
-acceleration = 8.0
+acceleration = 80.0
 rotation_speed = 0.8
 
 [node name="Trails" type="Node2D" parent="Plane"]

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 
 export(float) var speed = 50.0
@@ -28,12 +28,16 @@ func _process(delta):
 #
 func _physics_process(delta):
 	# velocity = direction * speed * delta
-	rotation = velocity.angle()
-	move_and_collide(velocity * delta)
+	rotation = linear_velocity.angle()
+#	move_and_collide(velocity * delta)
 
 
 func _on_joystick_value(value: Vector2):
 #	rotation_degrees = value.y * max_rotation
-	velocity = (velocity + acceleration * value).clamped(speed)
+#	velocity = (velocity + acceleration * value).clamped(speed)
+	var new_vel = linear_velocity + (value*acceleration)
+#	if new_vel.length() < speed:
+#		add_central_force(value * acceleration)
+	applied_force = value * acceleration
 	
 
